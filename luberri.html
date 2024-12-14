@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="eu">
+
+<head>
+    <meta charset="utf-8">
+    <title>Luberri Santo Tomas 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: rgb(21, 24, 26);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .produktua {
+            width: 90%;
+            height: 17%;
+            background-color: rgb(14, 53, 78);
+            border-radius: 10px;
+            margin: 5px;
+            padding: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .kendu {
+            width: 50px;
+            background-color: rgb(212, 13, 13);
+            height: 50px;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zenbat {
+            width: 80px;
+            background-color: rgb(231, 231, 231);
+            height: 50px;
+            border-radius: 5px;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .produktua_izena {
+            width: 70%;
+            background-color: rgb(17, 79, 121);
+            height: 50px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+
+        #pantaila {
+            background-color: rgb(231, 231, 231);
+            color: black;
+            width: 90%;
+            height: 17%;
+            border-radius: 10px;
+            margin: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 2.8rem;
+        }
+
+        #ezabatu {
+            width: 90%;
+            height: 17%;
+            background-color: rgb(95, 5, 5);
+            border-radius: 10px;
+            margin: 5px;
+            padding: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .kalkuloak {
+            width: 90%;
+            height: 17%;
+            background-color: rgb(14, 53, 78);
+            border-radius: 10px;
+            margin: 5px;
+            padding: 8px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bueltak {
+            width: 90%;
+            background-color: rgb(231, 231, 231);
+            height: 50px;
+            border-radius: 5px;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input {
+            height: 50px;
+            width: 90%;
+            border-radius: 5px;
+            font-size: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="pantaila">
+        0,00
+    </div>
+
+    <div class="produktua">
+        <div class="produktua_izena" onclick="gehitu('bokata', 450)">
+            <span>BOKATA</span>
+        </div>
+
+        <div class="kendu" onclick="kendu('bokata', 450)">
+            <span>-</span>
+        </div>
+        <div class="zenbat">
+            <span id="bokata">0</span>
+        </div>
+    </div>
+
+    <div class="produktua">
+        <div class="produktua_izena" onclick="gehitu('pintxoa', 250)">
+            <span>PINTXOA</span>
+        </div>
+
+        <div class="kendu" onclick="kendu('pintxoa', 250)">
+            <span>-</span>
+        </div>
+        <div class="zenbat">
+            <span id="pintxoa">0</span>
+        </div>
+    </div>
+
+    <div class="produktua">
+        <div class="produktua_izena" onclick="gehitu('ura', 150)">
+            <span>URA</span>
+        </div>
+
+        <div class="kendu" onclick="kendu('ura', 150)">
+            <span>-</span>
+        </div>
+        <div class="zenbat">
+            <span id="ura">0</span>
+        </div>
+    </div>
+
+    <div class="produktua">
+        <div class="produktua_izena" onclick="gehitu('freskagarria', 150)">
+            <span>COCA-COLA</span>
+        </div>
+
+        <div class="kendu" onclick="kendu('freskagarria', 150)">
+            <span>-</span>
+        </div>
+        <div class="zenbat">
+            <span id="freskagarria">0</span>
+        </div>
+    </div>
+
+    <div class="produktua">
+        <div class="produktua_izena" onclick="gehitu('edalontzia', 100)">
+            <span>EDALONTZI</span>
+        </div>
+
+        <div class="kendu" onclick="kendu('edalontzia', 100)">
+            <span>-</span>
+        </div>
+        <div class="zenbat">
+            <span id="edalontzia">0</span>
+        </div>
+    </div>
+    <div class="kalkuloak">
+        <div><input id="dirua" type="number" onchange="kalkulatu()"></div>
+        <div class="bueltak"><span id="bueltak">0</span></div>
+    </div>
+
+    <div id="ezabatu" onclick="ezabatu()">EZABATU</div>
+
+
+
+    <script>
+        function kendu(zer, prezioa) {
+            let span=document.getElementById(zer)
+            let zenbat=Number(span.textContent);
+            let pantaila=document.getElementById("pantaila");
+            let totala=Number(pantaila.textContent.replace(",", ""));
+            totala=totala-prezioa;
+            zenbat=zenbat-1;
+            span.textContent=zenbat;
+            pantaila.textContent=formateatu(totala);
+        }
+
+        function gehitu(zer, prezioa) {
+            let span=document.getElementById(zer)
+            let zenbat=Number(span.textContent);
+            let pantaila=document.getElementById("pantaila");
+            let totala=Number(pantaila.textContent.replace(",", ""));
+            totala=totala+prezioa;
+            zenbat=zenbat+1;
+            span.textContent=zenbat;
+            pantaila.textContent=formateatu(totala);
+        }
+
+        function formateatu(zenbakia) {
+            let str=zenbakia+'';
+            let length=str.length;
+            str=str.slice(0, length-2)+','+str.slice(-2);
+            return str;
+        }
+
+        function kalkulatu() {
+            let pantaila=document.getElementById("pantaila");
+            let totala=Number(pantaila.textContent.replace(",", ""));
+            let dirua=document.getElementById("dirua").value;
+            dirua=dirua*100;
+            let bueltak=dirua-totala;
+            document.getElementById('bueltak').textContent=formateatu(bueltak);
+
+        }
+
+        function ezabatu() {
+            document.getElementById('bokata').textContent=0;
+            document.getElementById('pintxoa').textContent=0;
+            document.getElementById('ura').textContent=0;
+            document.getElementById('freskagarria').textContent=0;
+            document.getElementById('edalontzia').textContent=0;
+            document.getElementById("pantaila").textContent="0,00";
+            document.getElementById('bueltak').textContent="";
+            document.getElementById("dirua").value="";
+        }
+    </script>
+
+
+</body>
+
+</html>
