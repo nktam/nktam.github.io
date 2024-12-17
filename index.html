@@ -11,7 +11,7 @@
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-weight: bold;
             color: white;
-            font-size: 2rem;
+            font-size: 1.2rem;
         }
 
         .produktua {
@@ -48,7 +48,7 @@
         }
 
         .produktua_izena {
-            width: 70%;
+            width: 50%;
             background-color: rgb(17, 79, 121);
             height: 50px;
             border-radius: 5px;
@@ -71,16 +71,21 @@
             font-size: 2.8rem;
         }
 
-        #ezabatu {
-            width: 90%;
+        #ezabatu,
+        #konfiguratu {
+            width: 45%;
             height: 17%;
-            background-color: rgb(95, 5, 5);
+            background-color: rgb(212, 13, 13);
             border-radius: 10px;
             margin: 5px;
             padding: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        #konfiguratu {
+            background-color: rgb(124, 122, 3);
         }
 
         .kalkuloak {
@@ -104,13 +109,42 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.9rem;
         }
 
         input {
             height: 50px;
             width: 90%;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 2rem;
+            text-align: center;
+        }
+
+        .flexrow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .inp_prezioak {
+            width: 45%;
+        }
+
+        .izenaprezioak {
+            width: 45%;
+        }
+
+        #konfigurazioa {
+            display: none;
+        }
+
+        #itxi {
+            width: 90%;
+            height: 17%;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 8px;
+            background-color: rgb(124, 122, 3);
             text-align: center;
         }
     </style>
@@ -123,11 +157,11 @@
     </div>
 
     <div class="produktua">
-        <div class="produktua_izena" onclick="gehitu('bokata', 450)">
+        <div class="produktua_izena" onclick="gehitu('bokata', document.getElementById('bok').value)">
             <span>BOKATA</span>
         </div>
 
-        <div class="kendu" onclick="kendu('bokata', 450)">
+        <div class="kendu" onclick="kendu('bokata', document.getElementById('bok').value)">
             <span>-</span>
         </div>
         <div class="zenbat">
@@ -136,11 +170,11 @@
     </div>
 
     <div class="produktua">
-        <div class="produktua_izena" onclick="gehitu('pintxoa', 250)">
+        <div class="produktua_izena" onclick="gehitu('pintxoa', document.getElementById('pin').value)">
             <span>PINTXOA</span>
         </div>
 
-        <div class="kendu" onclick="kendu('pintxoa', 250)">
+        <div class="kendu" onclick="kendu('pintxoa', document.getElementById('pin').value)">
             <span>-</span>
         </div>
         <div class="zenbat">
@@ -149,11 +183,11 @@
     </div>
 
     <div class="produktua">
-        <div class="produktua_izena" onclick="gehitu('ura', 150)">
+        <div class="produktua_izena" onclick="gehitu('ura', document.getElementById('h2o').value)">
             <span>URA</span>
         </div>
 
-        <div class="kendu" onclick="kendu('ura', 150)">
+        <div class="kendu" onclick="kendu('ura', document.getElementById('h2o').value)">
             <span>-</span>
         </div>
         <div class="zenbat">
@@ -162,11 +196,11 @@
     </div>
 
     <div class="produktua">
-        <div class="produktua_izena" onclick="gehitu('freskagarria', 150)">
+        <div class="produktua_izena" onclick="gehitu('freskagarria', document.getElementById('coc').value)">
             <span>COCA-COLA</span>
         </div>
 
-        <div class="kendu" onclick="kendu('freskagarria', 150)">
+        <div class="kendu" onclick="kendu('freskagarria', document.getElementById('coc').value)">
             <span>-</span>
         </div>
         <div class="zenbat">
@@ -175,11 +209,11 @@
     </div>
 
     <div class="produktua">
-        <div class="produktua_izena" onclick="gehitu('edalontzia', 100)">
+        <div class="produktua_izena" onclick="gehitu('edalontzia', document.getElementById('eda').value)">
             <span>EDALONTZI</span>
         </div>
 
-        <div class="kendu" onclick="kendu('edalontzia', 100)">
+        <div class="kendu" onclick="kendu('edalontzia', document.getElementById('eda').value)">
             <span>-</span>
         </div>
         <div class="zenbat">
@@ -190,9 +224,36 @@
         <div><input id="dirua" type="number" onchange="kalkulatu()"></div>
         <div class="bueltak"><span id="bueltak">0</span></div>
     </div>
+    <div id="konfigurazioa">
+        <div id="itxi" onclick="itxi()">ITXI PREZIOAK</div>
+        <h2>Prezioak Zentimotan</h2>
+        <div class="flexrow">
+            <div class="izenaprezioak">BOKATA</div>
+            <input type="number" id="bok" class="inp_prezioak" value="450">
+        </div>
+        <div class="flexrow">
+            <div class="izenaprezioak">PINTXOA</div>
+            <input type="number" id="pin" class="inp_prezioak" value="250">
+        </div>
+        <div class="flexrow">
+            <div class="izenaprezioak">URA</div>
+            <input type="number" id="h2o" class="inp_prezioak" value="150">
+        </div>
+        <div class="flexrow">
+            <div class="izenaprezioak">COCA-COLA</div>
+            <input type="number" id="coc" class="inp_prezioak" value="200">
+        </div>
+        <div class="flexrow">
+            <div class="izenaprezioak">EDALONTZI</div>
+            <input type="number" id="eda" class="inp_prezioak" value="100">
+        </div>
 
-    <div id="ezabatu" onclick="ezabatu()">EZABATU</div>
+    </div>
 
+    <div class="flexrow">
+        <div id="konfiguratu" onclick="ireki()">PREZIOAK</div>
+        <div id="ezabatu" onclick="ezabatu()">EZABATU</div>
+    </div>
 
 
     <script>
@@ -201,7 +262,8 @@
             let zenbat=Number(span.textContent);
             let pantaila=document.getElementById("pantaila");
             let totala=Number(pantaila.textContent.replace(",", ""));
-            totala=totala-prezioa;
+            let balioa=Number(prezioa);
+            totala=totala-balioa;
             zenbat=zenbat-1;
             span.textContent=zenbat;
             pantaila.textContent=formateatu(totala);
@@ -212,7 +274,8 @@
             let zenbat=Number(span.textContent);
             let pantaila=document.getElementById("pantaila");
             let totala=Number(pantaila.textContent.replace(",", ""));
-            totala=totala+prezioa;
+            let balioa=Number(prezioa);
+            totala=totala+balioa;
             zenbat=zenbat+1;
             span.textContent=zenbat;
             pantaila.textContent=formateatu(totala);
@@ -232,7 +295,6 @@
             dirua=dirua*100;
             let bueltak=dirua-totala;
             document.getElementById('bueltak').textContent=formateatu(bueltak);
-
         }
 
         function ezabatu() {
@@ -244,6 +306,16 @@
             document.getElementById("pantaila").textContent="0,00";
             document.getElementById('bueltak').textContent="";
             document.getElementById("dirua").value="";
+        }
+
+        function ireki() {
+            let div=document.getElementById('konfigurazioa');
+            div.style.display="block";
+        }
+
+        function itxi() {
+            let div=document.getElementById('konfigurazioa');
+            div.style.display="none";
         }
     </script>
 
