@@ -257,6 +257,23 @@
 
 
     <script>
+
+        if(window.localStorage.getItem('bokata')!=null)
+            document.getElementById('bok').value=window.localStorage.getItem('bokata');
+
+        if(window.localStorage.getItem('pintxoa')!=null)
+            document.getElementById('pin').value=window.localStorage.getItem('pintxoa');
+
+        if(window.localStorage.getItem('ura')!=null)
+            document.getElementById('h2o').value=window.localStorage.getItem('ura');
+
+        if(window.localStorage.getItem('freskagarria')!=null)
+            document.getElementById('coc').value=window.localStorage.getItem('freskagarria');
+
+        if(window.localStorage.getItem('edalontzia')!=null)
+            document.getElementById('eda').value=window.localStorage.getItem('edalontzia');
+
+
         function kendu(zer, prezioa) {
             let span=document.getElementById(zer)
             let zenbat=Number(span.textContent);
@@ -316,6 +333,11 @@
         function itxi() {
             let div=document.getElementById('konfigurazioa');
             div.style.display="none";
+            window.localStorage.setItem('bokata', document.getElementById('bok').value);
+            window.localStorage.setItem('pintxoa', document.getElementById('pin').value);
+            window.localStorage.setItem('ura', document.getElementById('h2o').value);
+            window.localStorage.setItem('freskagarria', document.getElementById('coc').value);
+            window.localStorage.setItem('edalontzia', document.getElementById('eda').value);
         }
     </script>
 
